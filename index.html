@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minimal Kanban</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Daily Workflow</p>
+          <h1>Minimal Black & White Kanban</h1>
+          <p class="subtitle">Drag tasks between lists. Done tasks auto-delete after 30 seconds.</p>
+        </div>
+        <div class="stats" id="stats">0 tasks • 0 done</div>
+      </header>
+
+      <section class="task-entry">
+        <input id="newTaskInput" type="text" maxlength="80" placeholder="Add a task for today..." />
+        <button id="addTaskBtn">Add Task</button>
+      </section>
+
+      <section class="board" aria-label="Kanban board">
+        <article class="column" data-type="todo">
+          <div class="column-head"><h2>To-do</h2><span class="pill">Waiting</span></div>
+          <div class="list" id="todoList" data-list="todo" aria-label="To-do tasks"></div>
+        </article>
+        <article class="column" data-type="inprogress">
+          <div class="column-head"><h2>In Process</h2><span class="pill">Working</span></div>
+          <div class="list" id="inprogressList" data-list="inprogress" aria-label="In process tasks"></div>
+        </article>
+        <article class="column" data-type="done">
+          <div class="column-head"><h2>Done</h2><span class="pill done">Completed</span></div>
+          <div class="list" id="doneList" data-list="done" aria-label="Done tasks"></div>
+        </article>
+      </section>
+    </div>
+
+    <template id="taskTemplate">
+      <div class="task-card" draggable="true">
+        <div class="task-text"></div>
+        <div class="task-actions">
+          <button class="edit-btn" title="Edit">✎</button>
+        </div>
+      </div>
+    </template>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
